@@ -1,12 +1,12 @@
 package com.example.mdbackend.controller;
 
-import com.example.mdbackend.dto.JwtResponse;
 import com.example.mdbackend.dto.LoginRequest;
 import com.example.mdbackend.dto.MessageResponse;
 import com.example.mdbackend.dto.SignupRequest;
 import com.example.mdbackend.model.ERole;
 import com.example.mdbackend.model.Role;
 import com.example.mdbackend.model.User;
+import com.example.mdbackend.payload.response.JwtResponse;
 import com.example.mdbackend.repository.RoleRepository;
 import com.example.mdbackend.repository.UserRepository;
 import com.example.mdbackend.security.jwt.JwtUtils;
@@ -63,7 +63,8 @@ public class AuthController {
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                roles));
+                roles,
+                jwtUtils.getExpirationFromJwtToken(jwt)));
     }
 
     @PostMapping("/signup")
